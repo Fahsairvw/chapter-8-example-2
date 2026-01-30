@@ -37,6 +37,13 @@ app.get("/video", async (req, res) => { // Route for streaming video.
     fs.createReadStream(videoPath).pipe(res);
 });
 
+//
+// Export the app for use in tests.
+//
+module.exports = {
+    app,
+};
+
 if (require.main === module) {
     //
     // When this script is run as the entry point, starts the HTTP server.
@@ -44,13 +51,5 @@ if (require.main === module) {
     app.listen(PORT, () => {
         console.log(`Microservice online.`);
     });
-}
-else {
-    //
-    // Otherwise, exports the express app object for use in tests.
-    //
-    module.exports = {
-        app,
-    };
 }
 
